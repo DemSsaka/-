@@ -13,7 +13,3 @@ __pycache__
 .mypy_cache
 .ruff_cache
 .DS_Store
-alembic.ini
-apps/api/alembic.ini
-apps/api/.env
-apps/web/.env.local

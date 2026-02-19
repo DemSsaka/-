@@ -47,7 +47,7 @@ def set_auth_cookies(response: Response, access_token: str, refresh_token: str) 
         access_token,
         httponly=True,
         secure=settings.cookie_secure,
-        samesite="lax",
+        samesite="none",
         max_age=settings.access_token_expires_minutes * 60,
         path="/",
     )
@@ -56,7 +56,7 @@ def set_auth_cookies(response: Response, access_token: str, refresh_token: str) 
         refresh_token,
         httponly=True,
         secure=settings.cookie_secure,
-        samesite="lax",
+        samesite="none",
         max_age=settings.refresh_token_expires_days * 24 * 3600,
         path="/api/auth",
     )
