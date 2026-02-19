@@ -1,0 +1,15 @@
+{
+  "name": "social-wishlist-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "packageManager": "pnpm@9.12.3",
+  "scripts": {
+    "dev": "concurrently \"make api-dev\" \"make web-dev\"",
+    "lint": "pnpm --filter @wishlist/web lint",
+    "typecheck": "pnpm --filter @wishlist/web typecheck",
+    "test:e2e": "pnpm --filter @wishlist/web test:e2e"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

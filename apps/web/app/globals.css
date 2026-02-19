@@ -1,0 +1,209 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --bg-grad-a: rgba(98, 169, 255, 0.2);
+  --bg-grad-b: rgba(255, 125, 208, 0.16);
+  --bg: #eef3fb;
+  --text: #0f172a;
+  --card: rgba(255, 255, 255, 0.88);
+  --card-border: rgba(148, 163, 184, 0.35);
+  --soft: #64748b;
+  --input-bg: #ffffff;
+  --input-border: #cbd5e1;
+  --btn-secondary-bg: #ffffff;
+  --btn-secondary-border: #cbd5e1;
+  --btn-secondary-text: #334155;
+  --brand-grad-start: #4b6bff;
+  --brand-grad-end: #ff5fce;
+  --brand-grad-hover-start: #3f5cf0;
+  --brand-grad-hover-end: #ec4fbc;
+  --brand-shadow: rgba(98, 108, 255, 0.32);
+  --chip-bg: #e9edf5;
+  --chip-text: #0f172a;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --bg-grad-a: rgba(77, 126, 255, 0.38);
+  --bg-grad-b: rgba(240, 116, 214, 0.24);
+  --bg: #0b1020;
+  --text: #f3f6ff;
+  --card: rgba(20, 30, 56, 0.82);
+  --card-border: rgba(142, 169, 220, 0.28);
+  --soft: #c2d1ef;
+  --input-bg: rgba(5, 15, 35, 0.82);
+  --input-border: rgba(132, 165, 228, 0.38);
+  --btn-secondary-bg: rgba(10, 23, 52, 0.86);
+  --btn-secondary-border: rgba(132, 165, 228, 0.4);
+  --btn-secondary-text: #edf3ff;
+  --brand-grad-start: #6a7cff;
+  --brand-grad-end: #ff7dd4;
+  --brand-grad-hover-start: #5c70ff;
+  --brand-grad-hover-end: #f86dc9;
+  --brand-shadow: rgba(115, 123, 255, 0.42);
+  --chip-bg: rgba(229, 236, 255, 0.16);
+  --chip-text: #f4f7ff;
+}
+
+body {
+  color: var(--text);
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(circle at 12% 10%, var(--bg-grad-a), transparent 38%),
+    radial-gradient(circle at 88% 10%, var(--bg-grad-b), transparent 42%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0));
+  min-height: 100vh;
+}
+
+.card {
+  @apply rounded-2xl backdrop-blur shadow-sm transition-all duration-300;
+  border: 1px solid var(--card-border);
+  background: var(--card);
+}
+
+.btn-primary {
+  @apply rounded-xl px-4 py-2 font-semibold text-white transition-all duration-300;
+  background-image: linear-gradient(135deg, var(--brand-grad-start), var(--brand-grad-end));
+  box-shadow: 0 12px 34px var(--brand-shadow);
+}
+
+.btn-secondary {
+  @apply rounded-xl px-4 py-2 font-medium transition-all duration-300;
+  border: 1px solid var(--btn-secondary-border);
+  background: var(--btn-secondary-bg);
+  color: var(--btn-secondary-text);
+}
+
+.input {
+  @apply w-full rounded-xl px-3 py-2 outline-none ring-brand-300 focus:ring-2 transition-all duration-200;
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  color: var(--text);
+}
+
+.price-chip {
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: var(--chip-bg);
+  color: var(--chip-text);
+}
+
+@media (hover: hover) {
+  .btn-primary:hover {
+    transform: translateY(-1px) scale(1.01);
+    background-image: linear-gradient(135deg, var(--brand-grad-hover-start), var(--brand-grad-hover-end));
+    box-shadow: 0 16px 38px var(--brand-shadow);
+  }
+
+  .btn-secondary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+  }
+}
+
+p,
+label,
+small {
+  color: var(--soft);
+}
+
+html[data-theme="dark"] .text-slate-500,
+html[data-theme="dark"] .text-slate-600,
+html[data-theme="dark"] .text-slate-700 {
+  color: #c5d5f5 !important;
+}
+
+html[data-theme="dark"] .text-slate-900 {
+  color: #f7fbff !important;
+}
+
+html[data-theme="dark"] .top-nav-light .text-slate-900 {
+  color: #0f172a !important;
+}
+
+html[data-theme="dark"] .top-nav-light .btn-secondary {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #334155 !important;
+}
+
+html[data-theme="dark"] ::placeholder {
+  color: #9fb6e2;
+  opacity: 1;
+}
+
+html[data-locale-switch="1"] body {
+  animation: locale-fade 260ms ease;
+}
+
+.falling-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.falling-wrap {
+  position: absolute;
+  top: -12vh;
+  will-change: transform;
+  animation-name: falling-drift;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.falling-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 18px rgba(15, 23, 42, 0.16));
+  animation-name: falling-spin;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes falling-drift {
+  0% {
+    transform: translate3d(0, -15vh, 0);
+  }
+  35% {
+    transform: translate3d(24px, 35vh, 0);
+  }
+  70% {
+    transform: translate3d(-18px, 72vh, 0);
+  }
+  100% {
+    transform: translate3d(12px, 120vh, 0);
+  }
+}
+
+@keyframes falling-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes locale-fade {
+  0% {
+    opacity: 0.75;
+    filter: blur(1px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
