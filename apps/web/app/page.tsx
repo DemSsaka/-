@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { Toast } from "@/components/toast";
@@ -16,9 +15,10 @@ export default function HomePage() {
   const [busy, setBusy] = useState(false);
   const { locale } = useLocale();
   const googleUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8000"}/api/auth/google/start`;
-  const search = useSearchParams();
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+    const search = new URLSearchParams(window.location.search);
     const oauthError = search.get("oauth_error");
     if (!oauthError) return;
     if (oauthError === "google_not_configured") {
@@ -26,7 +26,7 @@ export default function HomePage() {
       return;
     }
     setToast(locale === "ru" ? "Ошибка входа через Google" : "Google sign-in failed");
-  }, [locale, search]);
+  }, [locale]);
 
   async function submit() {
     setBusy(true);
