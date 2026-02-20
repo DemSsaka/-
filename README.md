@@ -2,8 +2,8 @@
 
 Production-ready wishlist app with anonymous reservations, group contributions, realtime updates, and URL metadata parsing.
 
-- Deployed URL: `<FILL_ME>`
-- GitHub URL: `<FILL_ME>`
+- Deployed URL: https://web-93xy.vercel.app
+- GitHub URL: https://github.com/DemSsaka/-
 
 ## Monorepo
 
